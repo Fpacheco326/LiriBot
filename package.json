@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Fpacheco326/LiriBot/issues"
   },
-  "homepage": "https://github.com/Fpacheco326/LiriBot#readme"
+  "homepage": "https://github.com/Fpacheco326/LiriBot#readme",
+  "dependencies": {
+    "node-spotify-api": "^1.0.7"
+  }
 }
