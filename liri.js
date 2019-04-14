@@ -38,20 +38,25 @@ function runLiribot(action, input) {
 };
 
 function runSpotify(input) {
-    spotify.search({ type: 'track', query: input, limit: 1 }, function (err, data) {
+    
+    spotify.search({ type: 'track', query: input, limit: 1 }, function (err, song) {
+        var song = data.tracks.items[0];
         if (err) {
-            console.log('whoops a mistake happened: ' + err);
-        } else {
-            song = data.tracks.items[0];
-            console.log(
-                '\n Artist: ' + song.artists[0].name + '\n Song: ' + song.name
-
-                + '\n Preview Link: ' + song.preview_url + '\n Album: ' +
-
-                song.album.name + '\n\n'
-
-            );
+        console.log('whoops a mistake happened: ' + err);
         }
+        console.log("Artists: " + song.artists[0].name);
+        console.log("Song Name: " + song.name);
+        console.log("Preview Link: " + song.preview_url);
+        console.log("Album: " + song.album.name);
+
+
+        fs.appendFile("log.txt", '\n Artist: ' + song.artists[0].name + '\n Song: ' + song.name
+            + '\n Preview Link: ' + song.preview_url + '\n Album: ' +
+            song.album.name, function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
     });
 };
 
@@ -73,24 +78,24 @@ function runBandsInTown() {
                     var location = ('Location: ' + events[i].venue.city + response.data[0].venue.country);
                     var date = ('Date: ' + moment(events[i].datetime).format("MM/DD/YYYY"));
 
-                    fs.appendFile("log.txt","\n" + venue 
-                    + "\n" + location + "\n" + date + "\n", function(err){
-                        if (err){
-                            console.log(err);
-                    }
-                    else {
-                        console.log("Content Added!")
-                    }
-                    
-                    })
+                    fs.appendFile("log.txt", "\n" + venue
+                        + "\n" + location + "\n" + date + "\n", function (err) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            else {
+                                console.log("Content Added!")
+                            }
+
+                        })
                 }
             }
-        
-    
+
+
         })
         .catch(function (error) {
-            if(error){
-            console.log("No showings listed for that artist currently.");
+            if (error) {
+                console.log("No showings listed for that artist currently.");
             }
         });
 
