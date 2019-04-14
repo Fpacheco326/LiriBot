@@ -142,7 +142,16 @@ function runOMDB(movie) {
     });
 }
 
+function runRandom(){
 
+    fs.readFile("./random.txt", "utf8", function (err,data){
+        if(err){
+            console.log(data);
+        }
+        var dataIn = data.split(",");
+        runLiribot(dataIn[0],dataIn[1]);
+    });
+}
 
 
 
