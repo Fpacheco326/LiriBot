@@ -1,6 +1,7 @@
 require("dotenv").config();
 var fs = require('fs');
 var keys = require('./keys');
+var request = require('request')
 var moment = require('moment');
 var axios = require("axios");
 var Spotify = require('node-spotify-api');
@@ -39,7 +40,7 @@ function runLiribot(action, input) {
 
 function runSpotify(input) {
     
-    spotify.search({ type: 'track', query: input, limit: 1 }, function (err, song) {
+    spotify.search({ type: 'track', query: input, limit: 1 }, function (err, data) {
         var song = data.tracks.items[0];
         if (err) {
         console.log('whoops a mistake happened: ' + err);
@@ -77,15 +78,16 @@ function runBandsInTown() {
                     var venue = ('Venue: ' + events[i].venue.name);
                     var location = ('Location: ' + events[i].venue.city + response.data[0].venue.country);
                     var date = ('Date: ' + moment(events[i].datetime).format("MM/DD/YYYY"));
+                    console.log('Venue: '+ events[i].venue.name);
+                    console.log('Location: ' + events[i].venue.city + response.data[0].venue.country);
+                    console.log('Date: ' + moment(events[i].datetime).format("MM/DD/YYYY"));
 
                     fs.appendFile("log.txt", "\n" + venue
                         + "\n" + location + "\n" + date + "\n", function (err) {
                             if (err) {
                                 console.log(err);
                             }
-                            else {
-                                console.log("Content Added!")
-                            }
+                        
 
                         })
                 }
@@ -111,7 +113,7 @@ function runOMDB(movie) {
 
     var queryURL = 'https://www.omdbapi.com/?t=' + movie + '&y=&plot=short&apikey=trilogy';
 
-    Request(queryURL, function (error, response, body) {
+    request(queryURL, function (error, response, body) {
         if (!error && response.statusCode === 200) {
             console.log("Movie Title: " + JSON.parse(body).Title);
             console.log("Year Released: " + JSON.parse(body).Year);
