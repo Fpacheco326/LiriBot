@@ -118,7 +118,7 @@ function runOMDB(movie) {
             console.log("Movie Title: " + JSON.parse(body).Title);
             console.log("Year Released: " + JSON.parse(body).Year);
             console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
-            console.log("Rotten Tomatoes Rating: " + JSON.parse(body).tomatoRating);
+            console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
             console.log("Country Produced in: " + JSON.parse(body).Country);
             console.log("Language Movie is in: " + JSON.parse(body).Language);
             console.log("Movie Plot: " + JSON.parse(body).Plot);
@@ -127,7 +127,7 @@ function runOMDB(movie) {
             fs.appendFile("log.txt", "\n Movie Title: " + JSON.parse(body).Title +
                 "\n Year Released: " + JSON.parse(body).Year +
                 "\n IMDB Rating: " + JSON.parse(body).imdbRating +
-                "\n Rotten Tomatoes Rating: " + JSON.parse(body).tomatoRating +
+                "\n Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value +
                 "\n Country Produced in: " + JSON.parse(body).Country +
                 "\n Language Movie is in: " + JSON.parse(body).Language +
                 "\n Movie Plot: " + JSON.parse(body).Plot +

@@ -274,3 +274,12 @@ Date: 08/23/2019
 Venue: Captured Festival Ibiza
 Location: Sant Antoni De PortmanyPoland
 Date: 09/07/2019
+
+ Movie Title: Deadpool
+ Year Released: 2016
+ IMDB Rating: 8.0
+ Rotten Tomatoes Rating: 84%
+ Country Produced in: USA
+ Language Movie is in: English
+ Movie Plot: A wisecracking mercenary gets experimented on and becomes immortal but ugly, and sets out to track down the man who ruined his looks.
+ Actors involved in this film: Ryan Reynolds, Karan Soni, Ed Skrein, Michael Benyaer
